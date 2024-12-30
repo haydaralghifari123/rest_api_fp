@@ -20,4 +20,20 @@ class Account_model extends CI_Model {
 
         return $data->row_array();
     }
+
+    // function register => email, password, name
+    public function register($data) {
+        // cek apakah email yang diinputkan sudah ada/blm
+        $this->db->where('email', $data['email']);
+        $check_data = $this->db->get('user');
+        $result = $check_data->result_array();
+
+        if (empty($result)) {
+            // jika email belum ada, maka data ditambahkan ke tabel user
+            $this->db->insert('user', $data);
+            return true; // return true jika registrasi berhasil
+        } else {
+            return false; // return false jika email sudah terdaftar
+        }
+    }
 }
