@@ -18,7 +18,7 @@ class User_model extends CI_Model{
         }else{
             //using like
             $this->db->like('username', $username);
-            $this->db->or_like('email', $emai);
+            $this->db->or_like('email', $email);
             $data = $this->db->get('username');
         }
 
